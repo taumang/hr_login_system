@@ -6,7 +6,7 @@ import compression from 'compression';// for compression is use for HTTP respons
 import cors from 'cors';
 import mongoose from 'mongoose';
 
-const app = express();
+export const app = express();
 
 //here the cors middleware is added for credentials
 app.use(cors({
