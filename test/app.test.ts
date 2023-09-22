@@ -1,6 +1,6 @@
 import http from 'http';
-import request from 'supertest'; // Install supertest for HTTP testing
-import { app } from '../src/index'; // Import your Express app
+import request from 'supertest'; // supertest for http testing
+import { app } from '../src/index'; // Imported the index.ts
 
 describe('Server Initialization', () => {
   let server: http.Server;
