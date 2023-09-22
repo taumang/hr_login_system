@@ -19,4 +19,4 @@ const UserSchema = new mongoose.Schema({
             select:false
         },
     }
-})
+});
