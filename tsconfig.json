@@ -1,0 +1,19 @@
+{
+    //these are the settings for how typescript should compile my code.
+    "compilerOptions": {
+        //Instructing typescript to make use of NodeNext module
+        "module": "NodeNext",
+        //Node.js module for resolution strategy is placed here so that modules are loaded in the code.
+        "moduleResolution": "node",
+        //simply stating that our base directory is = "src" folder in the project.
+        "baseUrl": "src",
+        //complied Typescript files will be place in the dist folder.
+        "outDir":"dist",
+        //sourceMap, files which will help in debugging.
+        "sourceMap": true,
+        //checking the various types found in TypeScrip, for them to not be misused.
+        "noImplicitAny": true,
+
+    },
+    "include": ["src/**/*"],
+}
