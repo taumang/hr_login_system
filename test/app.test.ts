@@ -14,7 +14,7 @@ describe('Server Initialization', () => {
     server.close(done);
   });
 
-  it('should respond with "Server running" message', async () => {
+  it('server active', async () => {
     const response = await request(app).get('/');
     expect(response.status).toBe(200);
     expect(response.text).toContain('Server running on http://localhost:5000');
