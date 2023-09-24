@@ -4,7 +4,7 @@
         //Instructing typescript to make use of NodeNext module
         "module": "NodeNext",
         //Node.js module for resolution strategy is placed here so that modules are loaded in the code.
-        "moduleResolution": "node",
+        "moduleResolution": "NodeNext",
         //simply stating that our base directory is = "src" folder in the project.
         "baseUrl": "src",
         //complied Typescript files will be place in the dist folder.
