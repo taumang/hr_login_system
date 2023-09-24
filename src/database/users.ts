@@ -30,6 +30,7 @@ const UserSchema = new mongoose.Schema({
 export const UserModel = mongoose.model('User', UserSchema);
 
 export const getUsers = () => UserModel.find();// purpose to get data from the database.
+export const getUserByUsername = (username:string) => UserModel.findOne({ username: username});//need to test this code...
 export const getUserBySessionToken = (sessionToken: string) => UserModel.findOne({
     'authentication.sessionToken':sessionToken,
 });
