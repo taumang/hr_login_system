@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser';// for handling cookies
 import compression from 'compression';// for compression is use for HTTP responses.
 import cors from 'cors';
 import mongoose from 'mongoose';
-import router from 'router';
+import router from './router';
 
 export const app = express();
 
@@ -31,5 +31,4 @@ mongoose.connect(MONGO_URL);
 
 //index.ts is listening to the errors for the MongoDB connection
 mongoose.connection.on('error',(error:Error) => console.log(error));
-
 app.use('/',router());
