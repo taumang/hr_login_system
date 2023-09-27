@@ -1,16 +1,16 @@
 import express  from "express";
-import { createUser, getUserByUsername } from "../database/users";
+import { createUser, getUserByEmail_Address } from "../database/users";
 import { authentication, random } from "../helpers";
 
 export const login = async (req:express.Request, res: express.Response) => {
 
     try {
-        const {username,password} = req.body;
+        const {email_address,password} = req.body;
 
-        if(!password ||!username){
+        if(!password ||!email_address){
             return res.sendStatus(400);
         };
-        const user = await getUserByUsername(username)
+        const user = await getUserByEmail_Address(email_address)
                 .select('+authentication.salt +authentication.password');
 
         if(!user){
@@ -40,13 +40,13 @@ export const login = async (req:express.Request, res: express.Response) => {
 
 export const register = async (req:express.Request, res:express.Response) => {
     try{
-        const {password , username} = req.body;
+        const {password, username, email_address,first_name,last_name,telephone_number,employee_manager,status} = req.body;
 
-        if(!password||!username){
+        if(!email_address||!password||!username||!first_name||!last_name||!telephone_number||!employee_manager||!status){
             return res.sendStatus(400);
         }
 
-        const existingUser = await getUserByUsername(username);
+        const existingUser = await getUserByEmail_Address(email_address);
 
         if(existingUser){
             return res.sendStatus(400);
@@ -54,13 +54,19 @@ export const register = async (req:express.Request, res:express.Response) => {
 
         const salt = random();
         const user = await createUser({
+            first_name,
+            last_name,
+            telephone_number,
+            email_address,
+            employee_manager,
+            status,
             username,
             authentication:{
                 salt,
                 password: authentication(salt,password)
             }
         });
-
+        //success message for frontend
         return res.status(200).json(user).end();
 
     }catch(error){
