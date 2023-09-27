@@ -1,10 +1,9 @@
-import './App.css'
-import Services from '../src/services/services.tsx'
+import LoginForm from './components/login';
 function App() {
   
   return (
     <>
-     <Services/>
+     <LoginForm/>
     </>
   )
 }

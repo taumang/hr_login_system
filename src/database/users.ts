@@ -1,12 +1,7 @@
 import mongoose from "mongoose";
 
 // Had some trouble trying yo link the DepartmentSchema with the main UserSchema, to create a relation bewteen them
-const DepartmentSchema = new mongoose.Schema({
-    name_:{
-        type:String,
-        required:true
-    },
-});
+
 
 //This is the schema for the login page of the wireframe
 const UserSchema = new mongoose.Schema({
