@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Login() {
   return (
@@ -38,7 +39,9 @@ function Login() {
 
                 <div className="md:col-span-5 text-right">
                   <div className="inline-flex items-end">
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+                    <Link to="/dashboard">
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Login</button>
+                    </Link>
                   </div>
                 </div>
               </div>

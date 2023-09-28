@@ -1,6 +1,41 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import api from '../api/api';
 
 function Register() {
+
+  const [formData, setFormData] = useState({
+    first_name: '',
+    last_name: '',
+    Username: '',
+    email: '',
+    address: '',
+    name_of: '',
+    state: '',
+    password: '',
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleRegistration = async () => {
+    try {
+      // Make an Axios POST request to your server with the form data
+      const response = await api.post('/register', formData);
+      console.log('Registration successful', response.data);
+
+      // Redirect to another page or show a success message
+    } catch (error) {
+      console.error('Registration error', error);
+      // Handle registration error (e.g., show an error message)
+    }
+  };
+
   return (
     <div className="h-screen overflow-hidden flex items-center justify-center bg-edf2f7">
       <div className="min-h-screen p-6 bg-gray-100 flex items-center justify-center">
@@ -17,6 +52,7 @@ function Register() {
                     <div className="md:col-span-5">
                       <label htmlFor="first_name">First Name</label>
                       <input
+                        onChange={handleInputChange}
                         type="text"
                         name="first_name"
                         id="first_name"
@@ -27,6 +63,7 @@ function Register() {
                     <div className="md:col-span-5">
                       <label htmlFor="last_name">Last Name</label>
                       <input
+                      onChange={handleInputChange}
                         type="text"
                         name="last_name"
                         id="last_name"
@@ -37,6 +74,7 @@ function Register() {
                     <div className="md:col-span-5">
                       <label htmlFor="Username">Username</label>
                       <input
+                      onChange={handleInputChange}
                         type="text"
                         name="Username"
                         id="Username"
@@ -47,6 +85,7 @@ function Register() {
                     <div className="md:col-span-5">
                       <label htmlFor="email">Email Address</label>
                       <input
+                      onChange={handleInputChange}
                         type="text"
                         name="email"
                         id="email"
@@ -58,6 +97,7 @@ function Register() {
                     <div className="md:col-span-3">
                       <label htmlFor="address">Telephone Number</label>
                       <input
+                        onChange={handleInputChange}
                         type="text"
                         name="address"
                         id="address"
@@ -68,6 +108,7 @@ function Register() {
                     <div className="md:col-span-2">
                       <label htmlFor="name_of">Name of Manager</label>
                       <input
+                        onChange={handleInputChange}
                         type="text"
                         name="name_of"
                         id="name_of"
@@ -79,6 +120,7 @@ function Register() {
                       <label htmlFor="state">Status</label>
                       <div className="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
                         <input
+                          onChange={handleInputChange}
                           name="state"
                           id="state"
                           placeholder="Status e.g Employed"
@@ -124,6 +166,7 @@ function Register() {
                     <div className="md:col-span-1">
                       <label htmlFor="password">Password</label>
                       <input
+                        onChange={handleInputChange}
                         type="password"
                         name="password"
                         id="password"
@@ -136,7 +179,10 @@ function Register() {
                 </div>
                 <div className="md:col-span-5 text-right">
                   <div className="inline-flex items-end">
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+                    <Link to="/dashboard">
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    onClick={handleRegistration}>Register</button>
+                    </Link>
                   </div>
                 </div>
               </div>
