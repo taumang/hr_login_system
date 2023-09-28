@@ -1,11 +1,13 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost:5000';
+async function api() {
+    try {
+        const response = await axios.get<string>("http://localhost:5000");
+        const data = response.data;
+        console.log(data);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
 
-
-const api = axios.create({
-    baseURL,
-});
-
-api.interceptors.response.use((response)=>response.data)
-export default api;
+api();

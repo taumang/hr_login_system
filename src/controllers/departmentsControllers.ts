@@ -1,5 +1,5 @@
 import express from 'express';
-import {getDepartments,deleteDepartmentById,updateDepartmentById, getDepartmentById} from '../database/departments';
+import {getDepartments,deleteDepartmentById,updateDepartmentById, getDepartmentById} from '../database/departmentsDatabase';
 
 export const getAllDepartments = async (req:express.Request, res:express.Response) =>{
     try {

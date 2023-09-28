@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser';// for handling cookies
 import compression from 'compression';// for compression is use for HTTP responses.
 import cors from 'cors';
 import mongoose from 'mongoose';
-import router from './router';
+import router from './router/indexRouter';
 
 export const app = express();
 

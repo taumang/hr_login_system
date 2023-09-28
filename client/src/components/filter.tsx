@@ -1,10 +1,23 @@
 // FilterBox.tsx
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const FilterBox: React.FC = () => {
-  const [showStatus] = useState(true);
-  const [showDepartment] = useState(true);
-  const [showManager] = useState(true);
+  const [showStatus, setShowStatus] = useState(true);
+  const [showDepartment, setShowDepartment] = useState(true);
+  const [showManager, setShowManager] = useState(true);
+
+  const getDepartments = async () => {
+    try {
+      const response = await axios.get('/api/department'); 
+      console.log(response.data);
+      setShowStatus(response.data.showStatus);
+      setShowDepartment(response.data.showDepartment);
+      setShowManager(response.data.showManager);  
+    } catch (error) {
+      console.error('Error in fetching the departments:', error);
+    }
+  };
 
   return (
     <div className="bg-gray-200 p-4 rounded-lg shadow">
@@ -14,7 +27,7 @@ const FilterBox: React.FC = () => {
           <label htmlFor="status" className="block text-sm font-medium text-gray-700">
             Status
           </label>
-          {/* Add your Status dropdown input here */}
+          
         </div>
       )}
       {showDepartment && (
@@ -22,7 +35,7 @@ const FilterBox: React.FC = () => {
           <label htmlFor="department" className="block text-sm font-medium text-gray-700">
             Department
           </label>
-          {/* Add your Department dropdown input here */}
+          
         </div>
       )}
       {showManager && (
@@ -30,10 +43,11 @@ const FilterBox: React.FC = () => {
           <label htmlFor="manager" className="block text-sm font-medium text-gray-700">
             Manager
           </label>
-          {/* Add your Manager dropdown input here */}
+          
         </div>
       )}
-      {/* Add other filter options here */}
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              onClick={getDepartments}>Filter</button>
     </div>
   );
 };

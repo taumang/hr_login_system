@@ -1,7 +1,25 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { Link } from 'react-router-dom';
+import Api from '../api/api.ts';
 
 function Login() {
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+
+
+  const handleLogin = async () => {
+    try {
+      const response = await Api.post('http://localhost:5000/auth/login', { email, password });
+      console.log('Login successful:', response);
+
+    } catch (error) {
+      console.error('Login failed:', error);
+     
+    }
+  };
+
   return (
     <div className="h-screen overflow-hidden flex items-center justify-center bg-edf2f7">
       <div className="min-h-screen p-6 bg-gray-100 flex items-center justify-center">
@@ -20,8 +38,9 @@ function Login() {
                     name="email"
                     id="email"
                     className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                    value=""
+                    value={email}
                     placeholder="email@domain.com"
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
 
@@ -32,15 +51,21 @@ function Login() {
                     name="password"
                     id="password"
                     className="transition-all flex items-center h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                    value={password}
                     placeholder="Password"
-                    value=""
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
 
                 <div className="md:col-span-5 text-right">
                   <div className="inline-flex items-end">
                     <Link to="/dashboard">
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Login</button>
+                      <button
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                        onClick={handleLogin}
+                      >
+                        Login
+                      </button>
                     </Link>
                   </div>
                 </div>

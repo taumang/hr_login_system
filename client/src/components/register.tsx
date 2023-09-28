@@ -1,22 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import api from '../api/api';
+import Api from '../api/api';
 
 function Register() {
 
   const [formData, setFormData] = useState({
     first_name: '',
     last_name: '',
-    Username: '',
+    username: '',
     email: '',
-    address: '',
+    telephone_number: '',
     name_of: '',
     state: '',
     password: '',
   });
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
+  /*
+  updates a form data object by adding or modifying a property 
+  with the name specified in the event's 
+  target using the new value provided in the event.
+  */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleInputChange = (e: { target: { name: any; value: any; }; }) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
@@ -25,14 +31,10 @@ function Register() {
 
   const handleRegistration = async () => {
     try {
-      // Make an Axios POST request to your server with the form data
-      const response = await api.post('/register', formData);
-      console.log('Registration successful', response.data);
-
-      // Redirect to another page or show a success message
+      const response = await Api.post('http://localhost:5000/auth/register', formData);
+      console.log('Registration successful', response.data); 
     } catch (error) {
       console.error('Registration error', error);
-      // Handle registration error (e.g., show an error message)
     }
   };
 
@@ -57,7 +59,7 @@ function Register() {
                         name="first_name"
                         id="first_name"
                         className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                        value=""
+                        value={formData.first_name}
                       />
                     </div>
                     <div className="md:col-span-5">
@@ -68,7 +70,7 @@ function Register() {
                         name="last_name"
                         id="last_name"
                         className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                        value=""
+                        value={formData.last_name}
                       />
                     </div>
                     <div className="md:col-span-5">
@@ -76,10 +78,10 @@ function Register() {
                       <input
                       onChange={handleInputChange}
                         type="text"
-                        name="Username"
-                        id="Username"
+                        name="username"
+                        id="username"
                         className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                        value=""
+                        value={formData.username}
                       />
                     </div>
                     <div className="md:col-span-5">
@@ -90,19 +92,19 @@ function Register() {
                         name="email"
                         id="email"
                         className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                        value=""
+                        value={formData.email}
                         placeholder="email@domain.com"
                       />
                     </div>
                     <div className="md:col-span-3">
-                      <label htmlFor="address">Telephone Number</label>
+                      <label htmlFor="telephone_number">Telephone Number</label>
                       <input
                         onChange={handleInputChange}
                         type="text"
-                        name="address"
-                        id="address"
+                        name="telephone_number"
+                        id="telephone_number"
                         className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                        value=""
+                        value={formData.telephone_number}
                       />
                     </div>
                     <div className="md:col-span-2">
@@ -113,7 +115,7 @@ function Register() {
                         name="name_of"
                         id="name_of"
                         className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                        value=""
+                        value={formData.name_of}
                       />
                     </div>
                     <div className="md:col-span-2">
@@ -125,7 +127,7 @@ function Register() {
                           id="state"
                           placeholder="Status e.g Employed"
                           className="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent"
-                          value=""
+                          value={formData.state}
                         />
                         <button
                           tabIndex={-1}
@@ -172,7 +174,7 @@ function Register() {
                         id="password"
                         className="transition-all flex items-center h-10 border mt-1 rounded px-4 w-full bg-gray-50"
                         placeholder="Password"
-                        value=""
+                        value={formData.password}
                       />
                     </div>
                   </div>

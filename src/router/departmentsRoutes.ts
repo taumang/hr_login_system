@@ -1,6 +1,6 @@
 import express from 'express';
-import { deleteDepartment, getAllDepartments, updateDepartment } from '../controllers/departments';
-import { isAuthenticated , isOwner} from '../middlewares';
+import { deleteDepartment, getAllDepartments, updateDepartment } from '../controllers/departmentsControllers';
+
 
 export default (router:express.Router) => {
     router.get('/department',getAllDepartments);

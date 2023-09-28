@@ -1,3 +1,4 @@
+//Simply to secure communication between the different routes
 import crypto from 'crypto';
 
 const SECRET = 'HR-API';

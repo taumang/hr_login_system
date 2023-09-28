@@ -1,6 +1,6 @@
 import express  from "express";
-import { createUser, getUserByEmail_Address } from "../database/users";
-import { authentication, random } from "../helpers";
+import { createUser, getUserByEmail_Address } from "../database/usersDatabase";
+import { authentication, random } from "../helpers/indexCrypto";
 
 export const login = async (req:express.Request, res: express.Response) => {
 
@@ -74,3 +74,4 @@ export const register = async (req:express.Request, res:express.Response) => {
         return res.sendStatus(400);
     }
 };
+
