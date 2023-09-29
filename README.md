@@ -9,7 +9,7 @@ Getting Started
     Installation:
         Once the repo has been fully cloned, navigate to the project directory and run the following command to install the necessary dependencies:
 
-        css
+
 
     npm i
 
@@ -17,7 +17,7 @@ Getting Started
 
     To get the backend running, use the following command:
 
-    sql
+
 
     npm start
 
@@ -25,7 +25,7 @@ Getting Started
 
     To run the frontend, use the following command:
 
-    arduino
+
 
         npm run dev
 
